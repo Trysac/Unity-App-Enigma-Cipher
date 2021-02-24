@@ -103,7 +103,7 @@ public class Ordenamiento : MonoBehaviour
         }
     }
 
-    private Text GetCorrectField(int numRotor, bool rotorAB) 
+    public Text GetCorrectField(int numRotor, bool rotorAB) 
     {
         if (numRotor == 0 || numRotor == 1) 
         {
@@ -218,7 +218,7 @@ public class Ordenamiento : MonoBehaviour
 
         int posicionArregloClave = 0;
 
-        for (int index = 0; index < 16; index++)
+        for (int index = 0; index < 14; index++)
         {
             if (index >= caracteresClave.Length) { break; }
             else
@@ -295,7 +295,7 @@ public class Ordenamiento : MonoBehaviour
         }
     }
 
-    private string GetABCrotores()
+    public string GetABCrotores()
     {
         Text field = GetCorrectField(numRetornoRotor, rotorAB);
         return field.text;
@@ -306,16 +306,46 @@ public class Ordenamiento : MonoBehaviour
     {
         if (Espejo.value == 0)
         {
-            rotorEspejo.text = ordenado;
+            rotorEspejo.text = OrdenAleatorioRotorEspejo();
         }
-        else if (Espejo.value == 1)
+    }
+    public Text GetABCRotorEspejo() 
+    {
+        return rotorEspejo;
+    }
+
+    public string OrdenAleatorioRotorEspejo()
+    {
+        string[] nuevoABC = { " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " " };
+
+        for (int i = 0; i < 27; i++)
         {
-            rotorEspejo.text = invertido;
+            int random = Random.Range(0, 27);
+            if (nuevoABC[random] == " ")
+            {
+                nuevoABC[random] = ABC_Ordenado[Random.Range(0, 15)].ToString();
+            }
+            else
+            {
+                i--;
+            }
         }
-        else if (Espejo.value == 2)
+
+        string ABC = "";
+
+        for (int i = 0; i < 27; i++)
         {
-            rotorEspejo.text = OrdenAleatorioRotor();
+            if (i < 26)
+            {
+                ABC += nuevoABC[i] + "\n";
+            }
+            else if (i == 26)
+            {
+                ABC += nuevoABC[i];
+            }
         }
+
+        return ABC;
     }
 
 }

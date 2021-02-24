@@ -34,6 +34,7 @@ public class GeneralUI : MonoBehaviour
         }
 
         claveOrdenamiento = clave.text;
+        mensaje_usuario = mensaje.text;
     }
 
     public void EscribirWarning(string warningCodigo) 
@@ -94,5 +95,10 @@ public class GeneralUI : MonoBehaviour
     public string GetMensajeUsuario()
     {
         return mensaje_usuario;
+    }
+
+    public void SetConsola(string salida) 
+    {
+        consola.text = salida;
     }
 }
