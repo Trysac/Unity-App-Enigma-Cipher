@@ -23,10 +23,10 @@ public class Ordenamiento : MonoBehaviour
     [SerializeField] Text R6B;
     [SerializeField] Text R7A;
     [SerializeField] Text R7B;
-    [SerializeField] Text R8A;
-    [SerializeField] Text R8B;
+
 
     [Header("Rotor Espejo")]
+    [SerializeField] Dropdown Espejo;
     [SerializeField] Text rotorEspejo;
     [SerializeField] Text index;
 
@@ -37,6 +37,8 @@ public class Ordenamiento : MonoBehaviour
 
 
     bool rotorAB = true;
+
+    int numRetornoRotor = 0;
 
     void Start()
     {
@@ -190,22 +192,11 @@ public class Ordenamiento : MonoBehaviour
                 return R7B;
             }
         }
-        else if (numRotor == 14 || numRotor == 15)
-        {
-            if (rotorAB)
-            {
-                return R8A;
-            }
-            else
-            {
-                return R8B;
-            }
-        }
 
         return null;
     }
 
-    public void CambiarCondicional(bool state)
+    private void CambiarCondicional(bool state)
     {
         if (state) 
         {
@@ -219,11 +210,120 @@ public class Ordenamiento : MonoBehaviour
 
     public void OrdenarRotoresClave()
     {
-        print("Ordenando rotores por clave");
+        if (GetComponent<GeneralUI>().GetClaveOrdenamiento() == null) { return; }
+        OrdenarPorClave();
     }
+
+    private void OrdenarPorClave()
+    {
+        string clave = GetComponent<GeneralUI>().GetClaveOrdenamiento();
+        if (clave == null) { return; }
+
+        char[] caracteresClave = clave.ToCharArray();
+
+        char[] ABCrotor;
+
+        numRetornoRotor = 0;
+        rotorAB = true;
+
+        int posicionArregloClave = 0;
+
+        for (int index = 0; index < 16; index++)
+        {
+            if (index >= caracteresClave.Length) { continue; }
+            else
+            {
+                if (caracteresClave[index].Equals(' '))
+                {
+                    continue;
+                }
+            }
+
+            ABCrotor = GetABCrotores().ToCharArray();
+
+            char[] ABCrotorNormalizado = new char[27];
+            string prueba = "";
+            for (int i = 0, x = 0; i < ABCrotor.Length; i++)
+            {
+                if (ABCrotor[i].Equals('\n') || ABCrotor[i].Equals(' ')) { continue; }
+                ABCrotorNormalizado[x] = ABCrotor[i];
+                prueba += ABCrotorNormalizado[x].ToString();
+                x++;
+            }
+
+            print(prueba);
+
+            //int posicion = 999;
+
+            //string caracter = caracteresClave[posicionArregloClave].ToString();
+            //for (int i = 0; i < caracteresClave.Length; i++)
+            //{
+            //    print(caracteresClave[posicionArregloClave]);
+            //    string ABC = ABCrotorNormalizado[i].ToString();
+            //    print(ABCrotorNormalizado[i]);
+
+            //    if (ABC.Equals(caracter))
+            //    {
+            //        //posicion = i;
+            //        print("Bien");
+            //    }
+            //}
+            ////print(posicion);
+            ////print(ABCrotorNormalizado[posicion]);
+
+            //char[] nuevoABCrotorNormalizado = new char[27];
+            //for (int i = posicion, salida = 0; salida <= 26; i++)
+            //{
+            //    if (i >= 26)
+            //    {
+            //        nuevoABCrotorNormalizado[salida] = ABCrotorNormalizado[i];
+            //        salida++;
+            //        i = 0;
+            //    }
+            //    else
+            //    {
+            //        nuevoABCrotorNormalizado[salida] = ABCrotorNormalizado[i];
+            //        salida++;
+            //    }
+            //}
+
+            //for (int i = 0; i < nuevoABCrotorNormalizado.Length; i++)
+            //{
+            //    //print("Index: "+ i + "\nValor: " + nuevoABCrotorNormalizado[i]);
+            //}
+
+            print("-------------------------------------------------------------------------------------------------------------");
+            print("-------------------------------------------------------------------------------------------------------------");
+
+            //posicionArregloClave++;
+
+
+        }
+    }
+
+    private string GetABCrotores()
+    {
+        Text field = GetCorrectField(numRetornoRotor, rotorAB);              
+        CambiarCondicional(rotorAB);  
+        numRetornoRotor++;
+        return field.text;
+        
+    }
+
     public void OrdenarRotorEspejo()
     {
-        print("Ordenando rotor espejo");
+        if (Espejo.value == 0)
+        {
+            rotorEspejo.text = ordenado;
+        }
+        else if (Espejo.value == 1)
+        {
+            rotorEspejo.text = invertido;
+        }
+        else if (Espejo.value == 2)
+        {
+            rotorEspejo.text = OrdenAleatorioRotor();
+        }
     }
 
 }

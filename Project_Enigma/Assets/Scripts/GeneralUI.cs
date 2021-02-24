@@ -11,16 +11,16 @@ public class GeneralUI : MonoBehaviour
     [SerializeField] Image bloque_3;
 
     [Header("Cifrado - Mensaje")]
-    [SerializeField] Text mensaje;
+    [SerializeField] InputField mensaje;
     [SerializeField] Text consola;
     [SerializeField] Text warning;
 
     [Header("Opciones de cifrado")]
-    [SerializeField] Text clave;
+    [SerializeField] InputField clave;
 
+    private string claveOrdenamiento;
 
-    string clave_Ordenamiento = " ";
-    string mensaje_usuario = " ";
+    private string mensaje_usuario = " ";
 
     bool confiRotoresBloqueado = true;
     bool confiClaveBloqueado = true;
@@ -32,6 +32,8 @@ public class GeneralUI : MonoBehaviour
         {
             Application.Quit();
         }
+
+        claveOrdenamiento = clave.text;
     }
 
     public void EscribirWarning(string warningCodigo) 
@@ -82,5 +84,15 @@ public class GeneralUI : MonoBehaviour
             confiEspejoBloqueado = true;
             bloque_3.enabled = true;
         }
+    }
+
+    public string GetClaveOrdenamiento() 
+    {
+        return claveOrdenamiento;
+    }
+
+    public string GetMensajeUsuario()
+    {
+        return mensaje_usuario;
     }
 }
