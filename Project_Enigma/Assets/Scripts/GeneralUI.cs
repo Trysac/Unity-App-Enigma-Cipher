@@ -8,6 +8,7 @@ public class GeneralUI : MonoBehaviour
     [Header("Bloqueo de opciones")]
     [SerializeField] Image bloque_1;
     [SerializeField] Image bloque_2;
+    [SerializeField] Image bloque_3;
 
     [Header("Cifrado - Mensaje")]
     [SerializeField] Text mensaje;
@@ -23,16 +24,24 @@ public class GeneralUI : MonoBehaviour
 
     bool confiRotoresBloqueado = true;
     bool confiClaveBloqueado = true;
-
-    void Start()
-    {
-
-    }
-
+    bool confiEspejoBloqueado = true;
 
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            Application.Quit();
+        }
+    }
+
+    public void EscribirWarning(string warningCodigo) 
+    {
+        warning.text = warningCodigo;
+    }
+
+    public void EscribirConsola(string resultado) 
+    {
+        consola.text = resultado;
     }
 
     public void DesbloquearBloquearConfiguracionRotores()
@@ -48,7 +57,6 @@ public class GeneralUI : MonoBehaviour
             bloque_1.enabled = true;
         }
     }
-
     public void DesbloquearBloquearConfiguracionClave()
     {
         if (confiClaveBloqueado)
@@ -60,6 +68,19 @@ public class GeneralUI : MonoBehaviour
         {
             confiClaveBloqueado = true;
             bloque_2.enabled = true;
+        }
+    }
+    public void DesbloquearBloquearConfiguracionEspejo()
+    {
+        if (confiEspejoBloqueado)
+        {
+            confiEspejoBloqueado = false;
+            bloque_3.enabled = false;
+        }
+        else
+        {
+            confiEspejoBloqueado = true;
+            bloque_3.enabled = true;
         }
     }
 }

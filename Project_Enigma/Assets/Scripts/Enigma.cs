@@ -14,4 +14,14 @@ public class Enigma : MonoBehaviour
     {
         
     }
+
+    public void CifrarMensaje() 
+    {
+        print("Cifrando...");
+    }
+
+    public void DecifrarMensaje()
+    {
+        print("Decifrando...");
+    }
 }
