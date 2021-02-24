@@ -40,16 +40,6 @@ public class Ordenamiento : MonoBehaviour
 
     int numRetornoRotor = 0;
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
-
     public string OrdenAleatorioRotor() 
     {
         string[] nuevoABC = { " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "};
@@ -230,11 +220,12 @@ public class Ordenamiento : MonoBehaviour
 
         for (int index = 0; index < 16; index++)
         {
-            if (index >= caracteresClave.Length) { continue; }
+            if (index >= caracteresClave.Length) { break; }
             else
             {
                 if (caracteresClave[index].Equals(' '))
                 {
+                    posicionArregloClave++;
                     continue;
                 }
             }
@@ -242,70 +233,71 @@ public class Ordenamiento : MonoBehaviour
             ABCrotor = GetABCrotores().ToCharArray();
 
             char[] ABCrotorNormalizado = new char[27];
-            string prueba = "";
             for (int i = 0, x = 0; i < ABCrotor.Length; i++)
             {
                 if (ABCrotor[i].Equals('\n') || ABCrotor[i].Equals(' ')) { continue; }
                 ABCrotorNormalizado[x] = ABCrotor[i];
-                prueba += ABCrotorNormalizado[x].ToString();
                 x++;
             }
 
-            print(prueba);
+            int posicion = 999;
 
-            //int posicion = 999;
+            string caracterActualClave = caracteresClave[posicionArregloClave].ToString();
+            for (int i = 0; i < ABCrotorNormalizado.Length; i++)
+            {
+                string caracterAbecedario = ABCrotorNormalizado[i].ToString();
 
-            //string caracter = caracteresClave[posicionArregloClave].ToString();
-            //for (int i = 0; i < caracteresClave.Length; i++)
-            //{
-            //    print(caracteresClave[posicionArregloClave]);
-            //    string ABC = ABCrotorNormalizado[i].ToString();
-            //    print(ABCrotorNormalizado[i]);
+                if (caracterAbecedario.Equals(caracterActualClave.ToUpper()))
+                {
+                    posicion = i;
+                    break;
+                }
+            }
 
-            //    if (ABC.Equals(caracter))
-            //    {
-            //        //posicion = i;
-            //        print("Bien");
-            //    }
-            //}
-            ////print(posicion);
-            ////print(ABCrotorNormalizado[posicion]);
+            char[] nuevoABCrotorNormalizado = new char[27];
+            for (int i = posicion, salida = 0; salida <= 26; i++)
+            {
+                if (i >= 26)
+                {
+                    nuevoABCrotorNormalizado[salida] = ABCrotorNormalizado[i];
+                    salida++;
+                    i = -1;
+                }
+                else
+                {
+                    nuevoABCrotorNormalizado[salida] = ABCrotorNormalizado[i];
+                    salida++;
+                }
+            }
 
-            //char[] nuevoABCrotorNormalizado = new char[27];
-            //for (int i = posicion, salida = 0; salida <= 26; i++)
-            //{
-            //    if (i >= 26)
-            //    {
-            //        nuevoABCrotorNormalizado[salida] = ABCrotorNormalizado[i];
-            //        salida++;
-            //        i = 0;
-            //    }
-            //    else
-            //    {
-            //        nuevoABCrotorNormalizado[salida] = ABCrotorNormalizado[i];
-            //        salida++;
-            //    }
-            //}
+            string ABC_Actualizado = "";
 
-            //for (int i = 0; i < nuevoABCrotorNormalizado.Length; i++)
-            //{
-            //    //print("Index: "+ i + "\nValor: " + nuevoABCrotorNormalizado[i]);
-            //}
+            for (int i = 0; i < nuevoABCrotorNormalizado.Length; i++) 
+            {
+                if (i == nuevoABCrotorNormalizado.Length - 1) 
+                {
+                    ABC_Actualizado += nuevoABCrotorNormalizado[i];
+                }
+                else 
+                {
+                    ABC_Actualizado += nuevoABCrotorNormalizado[i];
+                    ABC_Actualizado += "\n";
+                }
 
-            print("-------------------------------------------------------------------------------------------------------------");
-            print("-------------------------------------------------------------------------------------------------------------");
+            }
 
-            //posicionArregloClave++;
+            Text field = GetCorrectField(numRetornoRotor, rotorAB);
+            CambiarCondicional(rotorAB);
+            numRetornoRotor++;
+            field.text = ABC_Actualizado;
 
-
+            posicionArregloClave++;
         }
     }
 
     private string GetABCrotores()
     {
-        Text field = GetCorrectField(numRetornoRotor, rotorAB);              
-        CambiarCondicional(rotorAB);  
-        numRetornoRotor++;
+        Text field = GetCorrectField(numRetornoRotor, rotorAB);
         return field.text;
         
     }

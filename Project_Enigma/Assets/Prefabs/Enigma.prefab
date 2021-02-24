@@ -21535,10 +21535,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 26
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 10
+    m_BestFit: 0
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -24196,6 +24196,18 @@ PrefabInstance:
     - target: {fileID: 1746155670711794737, guid: 67dc7ab2c1f74994ea76f33d5b71490f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2450152763209658948, guid: 67dc7ab2c1f74994ea76f33d5b71490f, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2450152763209658948, guid: 67dc7ab2c1f74994ea76f33d5b71490f, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2450152763209658948, guid: 67dc7ab2c1f74994ea76f33d5b71490f, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 3895949981195265720, guid: 67dc7ab2c1f74994ea76f33d5b71490f, type: 3}
       propertyPath: m_Pivot.x
