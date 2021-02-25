@@ -10,6 +10,12 @@ public class Enigma : MonoBehaviour
     bool rotorAB = true;
     int numRetornoRotor = 0;
 
+    bool metodo = true;
+    private void Update()
+    {
+        //Para definir ambos procedimientos vistos en clase
+        metodo = GetComponent<Ordenamiento>().GetEsPorDefecto();
+    }
 
     public void CifrarMensaje() 
     {
@@ -64,6 +70,7 @@ public class Enigma : MonoBehaviour
                 //Rotor espejo
                 if (indexRotor >=15 && !ProcesoDeIdaYVuelta) 
                 {
+
                     //Obtenemos ABC espejo y normalizamos
                     char[] ABCrotorEspejo = GetComponent<Ordenamiento>().GetABCRotorEspejo().text.ToCharArray();
                     char[] ABCrotorEspejoNormalizado = new char[27];
@@ -74,33 +81,49 @@ public class Enigma : MonoBehaviour
                         x++;
                     }
 
-                    int nuevoIndexEspejo = 0;
+                    
+
                     letraEnTransito = ABCrotorEspejoNormalizado[indexInicioCifrado].ToString().ToUpper();
-                    print("Cambio valores");
-                    for (int x = 0; x < ABCrotorEspejoNormalizado.Length; x++) 
+                    if (GetComponent<Ordenamiento>().GetEsPorDefecto()) 
                     {
-                        string letraABC = ABCrotorEspejoNormalizado[x].ToString().ToUpper();
-                        if (letraABC.Equals(letraEnTransito))
+                        for (int x = 0; x < ABCrotorEspejoNormalizado.Length; x++)
                         {
-                            nuevoIndexEspejo += x;
+                            string letraABC = ABCrotorEspejoNormalizado[x].ToString().ToUpper();
+                            if (letraABC.Equals(letraEnTransito) && indexInicioCifrado != x)
+                            {
+                                indexInicioCifrado = x;
+                            }
                         }
                     }
-
-                    if (indexInicioCifrado != nuevoIndexEspejo) 
+                    else 
                     {
-                        if (nuevoIndexEspejo > 26) 
+                        int nuevoIndexEspejo = 0;
+                        print("Cambio valores");
+                        for (int x = 0; x < ABCrotorEspejoNormalizado.Length; x++)
                         {
-                            indexInicioCifrado = nuevoIndexEspejo - 26;
+                            string letraABC = ABCrotorEspejoNormalizado[x].ToString().ToUpper();
+                            if (letraABC.Equals(letraEnTransito))
+                            {
+                                nuevoIndexEspejo += x;
+                            }
                         }
-                        else 
-                        {
-                            indexInicioCifrado = nuevoIndexEspejo;
-                        }     
-                    }
 
-                    while (indexInicioCifrado > 26) 
-                    { 
-                        indexInicioCifrado = indexInicioCifrado - 26;
+                        if (indexInicioCifrado != nuevoIndexEspejo)
+                        {
+                            if (nuevoIndexEspejo > 26)
+                            {
+                                indexInicioCifrado = nuevoIndexEspejo - 26;
+                            }
+                            else
+                            {
+                                indexInicioCifrado = nuevoIndexEspejo;
+                            }
+                        }
+
+                        while (indexInicioCifrado > 26)
+                        {
+                            indexInicioCifrado = indexInicioCifrado - 26;
+                        }
                     }
 
                     //Volver a empezar pero a la inversa       
@@ -108,7 +131,6 @@ public class Enigma : MonoBehaviour
                     rotorB = !false;
                     indexRotor = -2;
                     ProcesoDeIdaYVuelta = true;
-                    print(indexInicioCifrado);
                     print("primera vuelta");
                     continue;
                 }
@@ -216,26 +238,41 @@ public class Enigma : MonoBehaviour
                         x++;
                     }
 
-                    int nuevoIndexEspejo = 0;
+                    
                     letraEnTransito = ABCrotorEspejoNormalizado[indexInicioCifrado].ToString().ToUpper();
-                    for (int x = 0; x < ABCrotorEspejoNormalizado.Length; x++)
+                    if (GetComponent<Ordenamiento>().GetEsPorDefecto())
                     {
-                        string letraABC = ABCrotorEspejoNormalizado[x].ToString().ToUpper();
-                        if (letraABC.Equals(letraEnTransito))
+                        for (int x = 0; x < ABCrotorEspejoNormalizado.Length; x++)
                         {
-                            nuevoIndexEspejo += x;
+                            string letraABC = ABCrotorEspejoNormalizado[x].ToString().ToUpper();
+                            if (letraABC.Equals(letraEnTransito) && indexInicioCifrado != x)
+                            {
+                                indexInicioCifrado = x;
+                            }
                         }
                     }
-
-                    if (indexInicioCifrado != nuevoIndexEspejo)
+                    else 
                     {
-                        if (nuevoIndexEspejo > 26)
+                        int nuevoIndexEspejo = 0;
+                        for (int x = 0; x < ABCrotorEspejoNormalizado.Length; x++)
                         {
-                            indexInicioCifrado = nuevoIndexEspejo - 26;
+                            string letraABC = ABCrotorEspejoNormalizado[x].ToString().ToUpper();
+                            if (letraABC.Equals(letraEnTransito))
+                            {
+                                nuevoIndexEspejo += x;
+                            }
                         }
-                        else
+
+                        if (indexInicioCifrado != nuevoIndexEspejo)
                         {
-                            indexInicioCifrado = nuevoIndexEspejo;
+                            if (nuevoIndexEspejo > 26)
+                            {
+                                indexInicioCifrado = nuevoIndexEspejo - 26;
+                            }
+                            else
+                            {
+                                indexInicioCifrado = nuevoIndexEspejo;
+                            }
                         }
                     }
 

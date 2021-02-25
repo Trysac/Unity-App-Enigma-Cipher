@@ -35,10 +35,19 @@ public class Ordenamiento : MonoBehaviour
     const string ordenado = "A\nB\nC\nD\nE\nF\nG\nH\nI\nJ\nK\nL\nM\nN\nÑ\nO\nP\nQ\nR\nS\nT\nU\nV\nW\nX\nY\nZ";
     const string invertido = "Z\nY\nX\nW\nV\nU\nT\nS\nR\nQ\nP\nO\nÑ\nN\nM\nL\nK\nJ\nI\nH\nG\nF\nE\nD\nC\nB\nA";
 
+    const string Defecto = "A\nB\nC\nD\nE\nF\nG\nD\nI\nJ\nK\nG\nM\nK\nM\nI\nE\nB\nF\nT\nC\nV\nV\nJ\nA\nT\nÑ";
+
 
     bool rotorAB = true;
 
     int numRetornoRotor = 0;
+
+    bool esPorDefecto = true;
+
+    private void Start()
+    {
+        rotorEspejo.text = Defecto;
+    }
 
     public string OrdenAleatorioRotor() 
     {
@@ -306,6 +315,12 @@ public class Ordenamiento : MonoBehaviour
     {
         if (Espejo.value == 0)
         {
+            esPorDefecto = true;
+            rotorEspejo.text = Defecto;
+        }
+        else if (Espejo.value == 1)
+        {
+            esPorDefecto = false;
             rotorEspejo.text = OrdenAleatorioRotorEspejo();
         }
     }
@@ -346,6 +361,11 @@ public class Ordenamiento : MonoBehaviour
         }
 
         return ABC;
+    }
+
+    public bool GetEsPorDefecto() 
+    {
+        return esPorDefecto;
     }
 
 }

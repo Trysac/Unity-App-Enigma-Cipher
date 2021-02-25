@@ -5482,7 +5482,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4436275482761216798
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5498,9 +5498,9 @@ RectTransform:
   m_Father: {fileID: 4436275483571672859}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 247.36234, y: -49.999992}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 162.10318, y: 99.999985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4436275482761216793
@@ -6953,6 +6953,8 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
+    - m_Text: MAC
+      m_Image: {fileID: 0}
     - m_Text: Aleatorio
       m_Image: {fileID: 0}
   m_OnValueChanged:
@@ -9711,6 +9713,7 @@ MonoBehaviour:
   consola: {fileID: 4436275483611337814}
   warning: {fileID: 4436275483413127192}
   clave: {fileID: 4436275482606859755}
+  botonDecifrar: {fileID: 4436275482761216797}
 --- !u!114 &3283201382327438300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9923,7 +9926,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Aleatorio
+  m_Text: MAC
 --- !u!1 &4436275483176640938
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,8 @@ public class GeneralUI : MonoBehaviour
     [Header("Opciones de cifrado")]
     [SerializeField] InputField clave;
 
+    [SerializeField] GameObject botonDecifrar;
+
     private string claveOrdenamiento;
 
     private string mensaje_usuario = " ";
@@ -26,12 +28,27 @@ public class GeneralUI : MonoBehaviour
     bool confiClaveBloqueado = true;
     bool confiEspejoBloqueado = true;
 
+    private void Start()
+    {
+        botonDecifrar.SetActive(false);
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) 
         {
             Application.Quit();
         }
+        //if (!GetComponent<Ordenamiento>().GetEsPorDefecto()) 
+        //{
+        //    botonDecifrar.SetActive(false);
+        //}
+        //else 
+        //{
+        //    botonDecifrar.SetActive(true);
+        //}
+
+        
 
         claveOrdenamiento = clave.text;
         mensaje_usuario = mensaje.text;
