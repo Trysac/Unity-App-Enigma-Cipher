@@ -110,9 +110,9 @@ public class Enigma : MonoBehaviour
 
                         if (indexInicioCifrado != nuevoIndexEspejo)
                         {
-                            if (nuevoIndexEspejo > 26)
+                            if (nuevoIndexEspejo > 27)
                             {
-                                indexInicioCifrado = nuevoIndexEspejo - 26;
+                                indexInicioCifrado = nuevoIndexEspejo - 27;
                             }
                             else
                             {
@@ -120,9 +120,9 @@ public class Enigma : MonoBehaviour
                             }
                         }
 
-                        while (indexInicioCifrado > 26)
+                        while (indexInicioCifrado > 27)
                         {
-                            indexInicioCifrado = indexInicioCifrado - 26;
+                            indexInicioCifrado = indexInicioCifrado - 27;
                         }
                     }
 
@@ -265,9 +265,9 @@ public class Enigma : MonoBehaviour
 
                         if (indexInicioCifrado != nuevoIndexEspejo)
                         {
-                            if (nuevoIndexEspejo > 26)
+                            if (nuevoIndexEspejo > 27)
                             {
-                                indexInicioCifrado = nuevoIndexEspejo - 26;
+                                indexInicioCifrado = nuevoIndexEspejo - 27;
                             }
                             else
                             {
