@@ -321,6 +321,11 @@ public class Ordenamiento : MonoBehaviour
         else if (Espejo.value == 1)
         {
             esPorDefecto = false;
+            rotorEspejo.text = Defecto;
+        }
+        else if (Espejo.value == 2)
+        {
+            esPorDefecto = false;
             rotorEspejo.text = OrdenAleatorioRotorEspejo();
         }
     }

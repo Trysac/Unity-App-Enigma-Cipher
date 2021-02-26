@@ -110,7 +110,7 @@ public class Enigma : MonoBehaviour
 
                         if (indexInicioCifrado != nuevoIndexEspejo)
                         {
-                            if (nuevoIndexEspejo > 27)
+                            if (nuevoIndexEspejo > 26)
                             {
                                 indexInicioCifrado = nuevoIndexEspejo - 27;
                             }
@@ -120,7 +120,7 @@ public class Enigma : MonoBehaviour
                             }
                         }
 
-                        while (indexInicioCifrado > 27)
+                        while (indexInicioCifrado > 26)
                         {
                             indexInicioCifrado = indexInicioCifrado - 27;
                         }
@@ -265,7 +265,7 @@ public class Enigma : MonoBehaviour
 
                         if (indexInicioCifrado != nuevoIndexEspejo)
                         {
-                            if (nuevoIndexEspejo > 27)
+                            if (nuevoIndexEspejo > 26)
                             {
                                 indexInicioCifrado = nuevoIndexEspejo - 27;
                             }

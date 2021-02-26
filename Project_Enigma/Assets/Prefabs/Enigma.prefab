@@ -6953,7 +6953,9 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: MAC
+    - m_Text: MAC 1
+      m_Image: {fileID: 0}
+    - m_Text: MAC 2
       m_Image: {fileID: 0}
     - m_Text: Aleatorio
       m_Image: {fileID: 0}
@@ -9926,7 +9928,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MAC
+  m_Text: MAC 1
 --- !u!1 &4436275483176640938
 GameObject:
   m_ObjectHideFlags: 0
