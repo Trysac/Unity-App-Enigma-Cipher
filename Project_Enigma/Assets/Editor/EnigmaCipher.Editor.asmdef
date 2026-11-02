@@ -1,0 +1,18 @@
+{
+    "name": "EnigmaCipher.Editor",
+    "rootNamespace": "EnigmaCipher.EditorTools",
+    "references": [
+        "EnigmaCipher.App"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

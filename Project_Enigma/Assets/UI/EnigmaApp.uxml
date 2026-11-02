@@ -1,0 +1,75 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="app" class="app">
+        <ui:VisualElement class="header">
+            <ui:VisualElement class="header__brand">
+                <ui:Label text="ENIGMA" class="header__title" />
+                <ui:Label text="Rotor cipher machine simulator" class="header__subtitle" />
+            </ui:VisualElement>
+            <ui:Button name="help-button" text="How it works" class="button button--ghost" />
+        </ui:VisualElement>
+
+        <ui:VisualElement class="columns">
+            <!-- Left: everything that defines the daily key. -->
+            <ui:VisualElement name="settings" class="panel panel--settings">
+                <ui:Label text="Machine settings" class="panel__title" />
+                <ui:DropdownField name="model" label="Model" class="field" />
+                <ui:DropdownField name="reflector" label="Reflector" class="field" />
+                <ui:Label text="Rotors (left to right)" class="field-label" />
+                <ui:VisualElement name="rotor-slots" class="rotor-slots" />
+                <ui:Label text="Ring: turns the wiring against the letter ring. Start: the letter in the window before the first key press." class="hint hint--block" />
+                <ui:VisualElement class="row row--spread">
+                    <ui:Label text="Plugboard" class="field-label" />
+                    <ui:Label name="cable-count" class="muted" />
+                </ui:VisualElement>
+                <ui:TextField name="plugboard" class="field field--mono" />
+                <ui:Label name="plugboard-status" class="status" />
+                <ui:Button name="reset-machine" text="Reset to start positions" class="button" />
+                <ui:Label text="Changing any setting returns the rotors to their start positions." class="hint" />
+            </ui:VisualElement>
+
+            <!-- Centre: the machine itself. -->
+            <ui:VisualElement name="machine" class="panel panel--machine">
+                <ui:VisualElement name="windows" class="windows" />
+                <ui:VisualElement name="lampboard" class="board board--lamps" />
+                <ui:VisualElement name="keyboard" class="board board--keys" />
+                <ui:VisualElement class="tape">
+                    <ui:Label name="tape-typed" class="tape__line" />
+                    <ui:Label name="tape-lit" class="tape__line tape__line--lit" />
+                </ui:VisualElement>
+                <ui:VisualElement class="signal">
+                    <ui:Label text="Signal path of the last key" class="field-label" />
+                    <ui:Label name="signal-path" class="signal__path" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Right: whole messages at once. -->
+            <ui:VisualElement name="text-mode" class="panel panel--text">
+                <ui:Label text="Text mode" class="panel__title" />
+                <ui:Label text="Message" class="field-label" />
+                <ui:TextField name="input-text" multiline="true" class="field text-area" />
+                <ui:VisualElement class="row">
+                    <ui:Button name="process-text" text="Encrypt / Decrypt" class="button button--primary" />
+                    <ui:Button name="swap-text" text="Swap" class="button" />
+                    <ui:Button name="reset-text" text="Reset" class="button" />
+                </ui:VisualElement>
+                <ui:Label text="Enigma is its own inverse: from the same start positions, encrypting the ciphertext gives back the message." class="hint" />
+                <ui:Label text="Result" class="field-label" />
+                <ui:TextField name="output-text" multiline="true" readonly="true" class="field text-area text-area--output" />
+                <ui:VisualElement class="row">
+                    <ui:Button name="copy-output" text="Copy output" class="button" />
+                    <ui:Label name="text-status" class="status" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="help-overlay" class="overlay overlay--hidden">
+            <ui:VisualElement class="overlay__card">
+                <ui:Label text="How it works" class="panel__title" />
+                <ui:Label class="overlay__text" text="Each key press first turns the rotors, then sends the current through the plugboard, the three rotors and the reflector, and back through the rotors and plugboard to light one lamp." />
+                <ui:Label class="overlay__text" text="Because the rotors move on every key, the same letter encrypts differently each time. The reflector makes the machine its own inverse, so typing the ciphertext with the same settings lights up the message, and it also means no letter ever encrypts to itself, a weakness the codebreakers at Bletchley Park exploited." />
+                <ui:Label class="overlay__text" text="Choose the settings on the left, type on the keyboard (on screen or your own) and follow the signal below the lampboard." />
+                <ui:Button name="help-close" text="Got it" class="button button--primary overlay__close" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

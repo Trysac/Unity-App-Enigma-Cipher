@@ -1,0 +1,544 @@
+/*
+ * Dark machine theme: walnut case, brushed steel panels, brass details and
+ * warm incandescent lamps. Layout is designed at 1280x720 reference pixels;
+ * the panel settings scale it to the screen.
+ */
+
+:root {
+    --case: #17120e;
+    --panel: #221b15;
+    --panel-edge: #3b2f24;
+    --inset: #120e0b;
+    --brass: #c9a35c;
+    --brass-dim: #8a6f3f;
+    --text: #eadfc9;
+    --muted: #a3927a;
+    --lamp-off: #2c251e;
+    --lamp-off-text: #6f6151;
+    --lamp-on: #ffcf6e;
+    --lamp-on-text: #3a2300;
+    --key: #2b241e;
+    --key-edge: #6b5a45;
+    --error: #e5826f;
+    --ok: #a7c48d;
+
+    color: var(--text);
+    font-size: 14px;
+}
+
+.app {
+    flex-grow: 1;
+    background-color: var(--case);
+    padding: 12px 16px 16px 16px;
+}
+
+/* ---- Header ---- */
+
+.header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 44px;
+    margin-bottom: 10px;
+    padding: 0 4px;
+    border-bottom-width: 1px;
+    border-color: var(--panel-edge);
+}
+
+.header__brand {
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.header__title {
+    font-size: 26px;
+    -unity-font-style: bold;
+    letter-spacing: 8px;
+    color: var(--brass);
+    padding: 0;
+    margin: 0 14px 0 0;
+}
+
+.header__subtitle {
+    color: var(--muted);
+    padding: 0 0 4px 0;
+    margin: 0;
+}
+
+/* ---- Columns and panels ---- */
+
+.columns {
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.panel {
+    background-color: var(--panel);
+    border-width: 1px;
+    border-color: var(--panel-edge);
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+
+.panel--settings {
+    width: 318px;
+    flex-shrink: 0;
+    margin-right: 12px;
+}
+
+.panel--machine {
+    flex-grow: 1;
+    margin-right: 12px;
+    align-items: center;
+    background-color: #1d1712;
+}
+
+.panel--text {
+    width: 330px;
+    flex-shrink: 0;
+}
+
+.panel__title {
+    font-size: 16px;
+    -unity-font-style: bold;
+    color: var(--brass);
+    margin: 0 0 8px 0;
+    padding: 0;
+}
+
+.field-label {
+    color: var(--muted);
+    font-size: 12px;
+    -unity-font-style: bold;
+    margin: 8px 0 4px 0;
+    padding: 0;
+}
+
+.muted {
+    color: var(--muted);
+    font-size: 12px;
+    margin: 8px 0 4px 0;
+    padding: 0;
+}
+
+.hint {
+    color: var(--muted);
+    font-size: 11px;
+    white-space: normal;
+    margin: 6px 0 0 0;
+    padding: 0;
+}
+
+.status {
+    font-size: 11px;
+    color: var(--ok);
+    white-space: normal;
+    margin: 4px 0 6px 0;
+    padding: 0;
+    flex-shrink: 1;
+}
+
+.status--error {
+    color: var(--error);
+}
+
+.row {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.row--spread {
+    justify-content: space-between;
+    margin-top: 0;
+}
+
+/* ---- Built-in controls, restyled ---- */
+
+.field {
+    margin: 0 0 4px 0;
+}
+
+.field > .unity-base-field__label {
+    min-width: 84px;
+    color: var(--text);
+}
+
+.unity-base-popup-field__input,
+.unity-base-text-field__input {
+    background-color: var(--inset);
+    border-color: var(--panel-edge);
+    border-radius: 5px;
+    color: var(--text);
+    min-height: 26px;
+}
+
+.unity-base-popup-field__text {
+    color: var(--text);
+    /* Take the room the arrow leaves, so short names such as "III" are not clipped. */
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    min-width: 20px;
+}
+
+.unity-base-popup-field__arrow {
+    flex-shrink: 0;
+}
+
+/* The slots are too narrow for the arrow; the name is centred and the frame lights on hover instead. */
+.slot__rotor .unity-base-popup-field__arrow {
+    display: none;
+}
+
+.slot__rotor .unity-base-popup-field__text {
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+}
+
+.slot__rotor > .unity-base-popup-field__input:hover {
+    border-color: var(--brass);
+}
+
+.field--mono .unity-base-text-field__input {
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+.text-area {
+    flex-grow: 1;
+    min-height: 80px;
+}
+
+.text-area .unity-base-text-field__input {
+    white-space: normal;
+    -unity-text-align: upper-left;
+    font-size: 15px;
+    padding: 6px;
+}
+
+.text-area--output .unity-base-text-field__input {
+    color: var(--lamp-on);
+    letter-spacing: 1px;
+}
+
+.unity-base-dropdown__container-inner {
+    background-color: var(--panel);
+    border-color: var(--brass-dim);
+}
+
+.unity-base-dropdown__item {
+    color: var(--text);
+}
+
+.unity-base-dropdown__item:hover {
+    background-color: #3a2f24;
+}
+
+.button {
+    background-color: #2f271f;
+    border-width: 1px;
+    border-color: var(--key-edge);
+    border-radius: 6px;
+    color: var(--text);
+    height: 30px;
+    padding: 0 10px;
+    margin: 0 6px 0 0;
+}
+
+.row > .button:last-child {
+    margin-right: 0;
+}
+
+.button:hover {
+    background-color: #3b3127;
+    border-color: var(--brass);
+}
+
+.button:active {
+    background-color: #4a3c2c;
+}
+
+.button--primary {
+    background-color: var(--brass-dim);
+    border-color: var(--brass);
+    color: #1b130a;
+    -unity-font-style: bold;
+}
+
+.button--primary:hover {
+    background-color: var(--brass);
+}
+
+.button--ghost {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: var(--brass-dim);
+    color: var(--brass);
+}
+
+#reset-machine {
+    margin-top: 10px;
+    margin-right: 0;
+}
+
+/* ---- Rotor slots ---- */
+
+.rotor-slots {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.slot {
+    width: 92px;
+    align-items: stretch;
+    background-color: var(--inset);
+    border-radius: 6px;
+    padding: 6px;
+}
+
+.slot__name {
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+    color: var(--brass);
+    margin: 0 0 4px 0;
+    padding: 0;
+}
+
+.slot__rotor {
+    margin: 0 0 4px 0;
+}
+
+.slot__caption {
+    font-size: 11px;
+    color: var(--muted);
+    -unity-text-align: middle-center;
+    margin: 2px 0;
+    padding: 0;
+}
+
+.stepper {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.stepper__button {
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    -unity-font-style: bold;
+    background-color: var(--key);
+    border-color: var(--key-edge);
+    border-radius: 12px;
+    color: var(--text);
+}
+
+.stepper__button:hover {
+    border-color: var(--brass);
+}
+
+.stepper__value {
+    flex-grow: 1;
+    -unity-text-align: middle-center;
+    font-size: 18px;
+    -unity-font-style: bold;
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+}
+
+/* ---- Rotor windows ---- */
+
+.windows {
+    flex-direction: row;
+    justify-content: center;
+    padding: 6px 22px 4px 22px;
+    margin-bottom: 8px;
+    background-color: #2a2119;
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: var(--panel-edge);
+}
+
+.window {
+    align-items: center;
+    margin: 0 16px;
+}
+
+.window__frame {
+    width: 50px;
+    height: 60px;
+    background-color: #efe2c2;
+    border-width: 3px;
+    border-color: #0d0a08;
+    border-radius: 6px;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.window__letter {
+    font-size: 34px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    color: #1d150d;
+    margin: 0;
+    padding: 0;
+}
+
+.window__name {
+    font-size: 11px;
+    color: var(--muted);
+    margin: 3px 0 0 0;
+    padding: 0;
+}
+
+/* ---- Lampboard and keyboard ---- */
+
+.board {
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.board--lamps {
+    padding: 6px 12px;
+    background-color: #120e0b;
+    border-radius: 10px;
+}
+
+.board__row {
+    flex-direction: row;
+    justify-content: center;
+}
+
+.lamp,
+.key {
+    width: 42px;
+    height: 42px;
+    margin: 3px 4px;
+    padding: 0;
+    border-radius: 21px;
+    -unity-text-align: middle-center;
+    font-size: 17px;
+    -unity-font-style: bold;
+}
+
+.lamp {
+    background-color: var(--lamp-off);
+    border-width: 2px;
+    border-color: #3a3128;
+    color: var(--lamp-off-text);
+    transition-property: background-color, color, border-color, scale;
+    transition-duration: 0.08s;
+}
+
+.lamp--on {
+    background-color: var(--lamp-on);
+    border-color: #fff0c4;
+    color: var(--lamp-on-text);
+    text-shadow: 0 0 6px rgba(255, 244, 214, 0.9);
+    scale: 1.1 1.1;
+}
+
+.key {
+    background-color: var(--key);
+    border-width: 3px;
+    border-color: var(--key-edge);
+    color: var(--text);
+}
+
+.key:hover {
+    border-color: var(--brass);
+}
+
+.key--pressed {
+    background-color: #43372b;
+    border-color: var(--brass);
+    translate: 0 2px;
+}
+
+.lamp--wide,
+.key--wide {
+    width: 180px;
+    height: 26px;
+    font-size: 11px;
+    border-radius: 13px;
+}
+
+/* ---- Tape and signal path ---- */
+
+.tape {
+    align-self: stretch;
+    background-color: var(--inset);
+    border-radius: 6px;
+    padding: 4px 10px;
+}
+
+.tape__line {
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: var(--text);
+    margin: 1px 0;
+    padding: 0;
+}
+
+.tape__line--lit {
+    color: var(--lamp-on);
+}
+
+.signal {
+    align-self: stretch;
+    margin-top: 4px;
+}
+
+.signal__path {
+    font-size: 13px;
+    white-space: normal;
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+}
+
+/* ---- How it works overlay ---- */
+
+.overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(8, 6, 4, 0.8);
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay--hidden {
+    display: none;
+}
+
+.overlay__card {
+    width: 560px;
+    background-color: var(--panel);
+    border-width: 1px;
+    border-color: var(--brass-dim);
+    border-radius: 12px;
+    padding: 20px 24px;
+}
+
+.overlay__text {
+    white-space: normal;
+    font-size: 14px;
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+
+.overlay__close {
+    align-self: flex-end;
+    margin: 6px 0 0 0;
+}
+
+.hint--block {
+    margin: 0 0 6px 0;
+}
