@@ -28,6 +28,8 @@ env:
 jobs:
   test-and-build:
     runs-on: ubuntu-24.04
+    outputs:
+      built: ${{ steps.license.outputs.available }}
     steps:
       - name: Check Unity license
         id: license
@@ -55,6 +57,7 @@ jobs:
         with:
           projectPath: Project_Enigma
           testMode: editmode
+          artifactsPath: build/test-results
           githubToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build WebGL
@@ -64,6 +67,7 @@ jobs:
           projectPath: Project_Enigma
           targetPlatform: WebGL
           buildsPath: build
+          versioning: None
 
       - uses: actions/upload-artifact@v4
         if: steps.license.outputs.available == 'true'
@@ -79,7 +83,7 @@ jobs:
           path: build/WebGL/WebGL
 
   deploy:
-    if: github.event_name == 'workflow_dispatch' && inputs.deploy
+    if: github.event_name == 'workflow_dispatch' && inputs.deploy && needs.test-and-build.outputs.built == 'true'
     needs: test-and-build
     runs-on: ubuntu-24.04
     permissions:
