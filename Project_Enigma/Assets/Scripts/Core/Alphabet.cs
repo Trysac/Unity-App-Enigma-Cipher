@@ -1,4 +1,6 @@
 using System;
+using System.Globalization;
+using System.Text;
 
 namespace EnigmaCipher.Core
 {
@@ -37,10 +39,30 @@ namespace EnigmaCipher.Core
             Letters = letters;
         }
 
-        /// <summary>Index of a letter (case-insensitive), or -1 when it is not part of the alphabet.</summary>
+        /// <summary>
+        /// Index of a letter, or -1 when it is not part of the alphabet. Case and
+        /// accents are ignored (Á counts as A) unless the accented letter is itself
+        /// part of the alphabet, like Ñ in Spanish.
+        /// </summary>
         public int IndexOf(char letter)
         {
-            return Letters.IndexOf(char.ToUpperInvariant(letter));
+            char upper = char.ToUpperInvariant(letter);
+            int index = Letters.IndexOf(upper);
+            return index >= 0 ? index : Letters.IndexOf(StripAccent(upper));
+        }
+
+        // Base letter of an accented one (É -> E), or the letter itself.
+        static char StripAccent(char letter)
+        {
+            string decomposed = letter.ToString().Normalize(NormalizationForm.FormD);
+            foreach (char c in decomposed)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                {
+                    return c;
+                }
+            }
+            return letter;
         }
 
         public bool Contains(char letter) => IndexOf(letter) >= 0;

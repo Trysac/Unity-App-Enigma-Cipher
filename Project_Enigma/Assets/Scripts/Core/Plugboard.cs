@@ -104,9 +104,10 @@ namespace EnigmaCipher.Core
 
         public int Swap(int contact) => table[contact];
 
+        // Cables plug into real sockets: accented letters are not folded here.
         int RequireLetter(char letter)
         {
-            int index = alphabet.IndexOf(letter);
+            int index = alphabet.Letters.IndexOf(char.ToUpperInvariant(letter));
             if (index < 0)
             {
                 throw new ArgumentException($"'{letter}' is not a letter of this machine.");

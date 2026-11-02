@@ -116,6 +116,25 @@ namespace EnigmaCipher.Core.Tests
         }
 
         [Test]
+        public void AccentedLetters_AreEncryptedAsTheirBaseLetter()
+        {
+            EnigmaMachine accented = Presets.Spanish.Build(0, 0, 1, 2);
+            EnigmaMachine plain = Presets.Spanish.Build(0, 0, 1, 2);
+
+            Assert.AreEqual(plain.Process("ESTACION Y PINGUINO"), accented.Process("estación y pingüino"));
+        }
+
+        [Test]
+        public void Ñ_StaysALetterOfItsOwn()
+        {
+            // Same machine state, different keys: a permutation never maps both to one lamp.
+            string withÑ = Presets.Spanish.Build(0, 0, 1, 2).Process("ñ");
+            string withN = Presets.Spanish.Build(0, 0, 1, 2).Process("N");
+
+            Assert.AreNotEqual(withN, withÑ);
+        }
+
+        [Test]
         public void EveryPreset_HasValidWirings()
         {
             foreach (MachineModel model in Presets.All)
