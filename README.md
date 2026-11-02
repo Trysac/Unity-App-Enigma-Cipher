@@ -55,7 +55,7 @@ Two machines are included:
 
 - **Engine-independent core.** The cipher (`Assets/Scripts/Core`) is plain C# with no
   Unity references, in its own assembly. The UI only drives a `MachineSession`, which
-  is also plain C#, so both are unit-tested without rendering anything (32 EditMode
+  is also plain C#, so both are unit-tested without rendering anything (33 EditMode
   tests).
 - **Getting the mechanics right.** The tests pin the published test vectors
   (`AAAAA` → `BDZGO` with rotors I-II-III and reflector B, and `EWTYX` with rings
