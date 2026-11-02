@@ -1,0 +1,16 @@
+{
+    "name": "EnigmaCipher.App",
+    "rootNamespace": "EnigmaCipher.App",
+    "references": [
+        "EnigmaCipher.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
