@@ -345,11 +345,13 @@ namespace EnigmaCipher.App
             }
         }
 
+        // A focused text field or dropdown owns the keyboard (space would also
+        // reopen a dropdown), so the machine only listens when neither has focus.
         bool IsTypingInTextField()
         {
             for (var element = root.panel?.focusController?.focusedElement as VisualElement; element != null; element = element.parent)
             {
-                if (element is TextField)
+                if (element is TextField || element is DropdownField)
                 {
                     return true;
                 }

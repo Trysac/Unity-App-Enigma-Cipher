@@ -57,6 +57,17 @@ namespace EnigmaCipher.App.Tests
         }
 
         [Test]
+        public void MaxCables_Spanish_LeavesOutTheSpaceKey()
+        {
+            var session = new MachineSession();
+
+            session.SelectModel(1);
+
+            // 27 letters can be cabled in at most 13 pairs; the space has no socket.
+            Assert.AreEqual(13, session.MaxCables);
+        }
+
+        [Test]
         public void TrySetPlugboard_Invalid_KeepsThePreviousCablesAndReportsTheCoreMessage()
         {
             var session = new MachineSession();

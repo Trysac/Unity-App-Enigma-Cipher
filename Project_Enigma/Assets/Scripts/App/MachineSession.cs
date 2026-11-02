@@ -38,7 +38,8 @@ namespace EnigmaCipher.App
         /// <summary>Normalised cables in use, e.g. "AB CD". Only valid boards are ever applied.</summary>
         public string PlugboardPairs { get; private set; } = string.Empty;
         public int CableCount { get; private set; }
-        public int MaxCables => Alphabet.Size / 2;
+        // The space key has no plugboard socket, so it never takes a cable.
+        public int MaxCables => Alphabet.Letters.Replace(" ", string.Empty).Length / 2;
 
         /// <summary>The machine typed on by the keyboard; it stays at the position the last key left it.</summary>
         public EnigmaMachine Machine { get; private set; }
