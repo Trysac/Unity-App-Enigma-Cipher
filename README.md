@@ -10,6 +10,15 @@ light up and the electrical signal travel through every wheel.
 |---|---|
 | ![Spanish model with Ñ and a space key](docs/screenshots/spanish.png) | ![How it works overlay](docs/screenshots/help.png) |
 
+## Play it
+
+- **In your browser:** [trysac.github.io/Unity-App-Enigma-Cipher](https://trysac.github.io/Unity-App-Enigma-Cipher/)
+- **Get the code:** fork this repository, or clone it:
+
+  ```bash
+  git clone https://github.com/Trysac/Unity-App-Enigma-Cipher.git
+  ```
+
 ## Run it
 
 1. Install **Unity 6000.3.27f1 (Unity 6 LTS)** with Unity Hub.
